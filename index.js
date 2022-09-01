@@ -1,13 +1,25 @@
 // ### CHALLENGE 1: REVERSE A STRING
 // // Return a string in reverse
 // //  ex:
-// reverseString('hello') === 'olleh';
-
+console.log(reverseString('hello'))// === 'olleh';
+function reverseString(str) {
+    return str.split('').reverse().join('')
+}
 // #### CHALLENGE 2: VALIDATE A PALINDROME
 // // Return true if palindrome and false if not
 // // ex:
 // isPalindrome('racecar') === true;
 // isPalindrome('hello') == false;
+
+function isPalindrome(str) {
+    let halfLength = 1;
+    if (str.length % 2 === 0)
+        halfLength = str.length / 2;
+    else
+        0
+    return str.slice(0, halfLength) === str.slice(halfLength).split('').reverse().join('');
+}
+console.log(isPalindrome('raccar'))
 
 // ### CHALLENGE 3: REVERSE AN INTEGER
 // // Return an integer in reverse
@@ -37,12 +49,24 @@
 // longestWord('My name is Brad') === ['name', 'brad'];
 // longestWord('Brad') === 'brad';
 
-// ### CHALLENGE 8: ARRAY CHUNKING
-// // Split an array into chunked arrays of a specific length
-// // ex:
-// chunkArray([1, 2, 3, 4, 5, 6, 7], 3) === [[1, 2, 3], [4, 5, 6], [7]];
-// chunkArray([1, 2, 3, 4, 5, 6, 7], 2) === [[1, 2], [3, 4], [5, 6], [7]];
+// CHALLENGE 8: ARRAY CHUNKING
+// Split an array into chunked arrays of a specific length
 
+function chunkArray(arr, num) {
+    const result = [];
+    loops = arr.length / num;
+    for (let i = 0; i < loops; i++) {
+        result.push(arr.splice(0, num));
+    } return result;
+}
+
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3))
+// -> [[1, 2, 3], [4, 5, 6], [7]];
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 2))
+// -> [[1, 2], [3, 4], [5, 6], [7]];
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9], 2))
+
+// -> [[1, 2], [3, 4], [5, 6], [7]];
 // ### CHALLENGE 9: FLATTEN ARRAY
 // Take an array of arrays and flatten to a single array
 // ex:
