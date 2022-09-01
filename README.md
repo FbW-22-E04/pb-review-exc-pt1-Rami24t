@@ -1,16 +1,10 @@
 'use strict';
-
-// ### CHALLENGE 1: REVERSE A STRING
-// // Return a string in reverse
-// //  ex:
+// CHALLENGE 1: REVERSE A STRING
 console.log(reverseString('hello'))// === 'olleh';
 function reverseString(str) {
     return str.split('').reverse().join('')
 }
 // #### CHALLENGE 2: VALIDATE A PALINDROME
-// // Return true if palindrome and false if not
-// // ex:
-
 function isPalindrome(str) {
     const halfLength = Math.floor(str.length / 2);
     let halfLength2 = halfLength;
@@ -22,16 +16,12 @@ console.log(isPalindrome('racecar'));
 console.log(isPalindrome('hello'));
 
 // ### CHALLENGE 3: REVERSE AN INTEGER
-// // Return an integer in reverse
-// // ex:
 console.log(reverseInt(521));
 function reverseInt(n) {
     return +(n.toString().split('').reverse().join(''));
 }
 // ### CHALLENGE 4: CAPITALIZE LETTERS
-// // Return a string with the first letter of every word capitalized
-// //  ex:
-//
+// Return a string with the first letter of every word capitalized
 function capitalizeLetters(str) {
     const arr = str.split(' ');
     const result = [];
@@ -44,14 +34,37 @@ console.log(capitalizeLetters('i love javascript'));
 
 // ### CHALLENGE 5: MAX CHARACTER
 // Return the character that is most common in a string
-// ex:
-// maxCharacter('javascript') == 'a';
-
-
-
+maxCharacter('javascript') == 'a';
+function maxCharacter(str) {
+    //let arr = str.split('');
+    let objCounter = {};
+    for (let i = 0; i < str.length; i++) {
+        if (objCounter[str[i]] === undefined)
+            objCounter[str[i]] = 1;
+        else
+            objCounter[str[i]]++
+    }
+    return (Object.entries(objCounter).sort((a, b) => b[1] - a[1])[0][0]);
+}
+console.log(maxCharacter('javascript'));
 
 // ### CHALLENGE 6: FIZZBUZZ
-// Write a program that prints all the numbers from 1 to 100. For multiples of 3, instead of the number, print "Fizz", for multiples of 5 print "Buzz". For numbers which are multiples of both 3 and 5, print "FizzBuzz".
+// Write a program that prints all the numbers from 1 to 100.
+// For multiples of 3, instead of the number, print "Fizz", for multiples of 5 print "Buzz". For numbers which are multiples of both 3 and 5, print "FizzBuzz".
+
+function fizzBuzz() {
+    let n = 100
+    for (let i = 1; i <= n; i++) {
+        let out = '';
+        if (i % 3 === 0)
+            out += 'Fizz';
+        if (i % 5 === 0)
+            out += 'Buzz';
+        console.log(out || i)
+    }
+}
+
+console.log(fizzBuzz())
 
 // ### CHALLENGE 7: LONGEST WORD
 // Return the longest word of a string
@@ -62,6 +75,28 @@ console.log(capitalizeLetters('i love javascript'));
 // longestWord('Hi there, my name is Brad') === 'there,';
 // longestWord('My name is Brad') === ['name', 'brad'];
 // longestWord('Brad') === 'brad';
+
+function longestWord(str) {
+    let arr = str.split(' ');
+    let longest1 = '';
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (longest1.length !== arr[i].length)
+            if (longest1.length < arr[i].length)
+                longest1 = arr[i];
+    }
+    result.push(longest1);
+    let j = arr.indexOf(longest1) + 1;
+    for (let i = j; i < arr.length; i++) {
+        if (longest1.length == arr[i].length)
+            result.push(arr[i])
+    }
+    if (result.length > 1)
+        return result;
+    else
+        return result[0];
+}
+console.log(longestWord('My name is Brad'));
 
 // CHALLENGE 8: ARRAY CHUNKING
 // Split an array into chunked arrays of a specific length
